@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostafa | Software Developer</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            line-height: 1.6;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        nav {
+            background: #111a30;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        nav a {
+            margin: 0 15px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #00d4ff;
+        }
+
+        .hero {
+            padding: 70px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #7c5cff, #00d4ff);
+        }
+
+        .initial {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: auto auto 15px;
+            background: white;
+            color: #0b1220;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            margin: 10px 0;
+            font-size: 40px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 15px auto 0;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #111a30;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.18);
+        }
+
+        .slideshow-section {
+            background: #0f1a30;
+        }
+
+        .slideshow-container {
+            max-width: 900px;
+            position: relative;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .slide-text {
+            background-color: rgba(0, 0, 0, 0.72);
+            color: white;
+            padding: 14px;
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82%;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 14px;
+            background-color: rgba(0, 0, 0, 0.45);
+            border-radius: 8px;
+            user-select: none;
+        }
+
+        .prev { left: 12px; }
+        .next { right: 12px; }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #7c8aa5;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: #00d4ff;
+        }
+
+        .skills {
+            text-align: center;
+        }
+
+        .skills span {
+            display: inline-block;
+            background: #00d4ff;
+            color: #000;
+            padding: 8px 14px;
+            margin: 6px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .project-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .project-links a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 16px;
+            background: #00d4ff;
+            color: #000;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: #7c5cff;
+            color: white;
+        }
+
+        form {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        button {
+            background: #00d4ff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover {
+            background: #7c5cff;
+            color: white;
+        }
+
+        footer {
+            background: #111a30;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .fade {
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        @media screen and (max-width: 768px) {
+            nav a {
+                margin: 8px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .initial {
+                width: 90px;
+                height: 90px;
+                font-size: 30px;
+            }
+
+            .slide img {
+                height: 320px;
+            }
+
+            .slide-text {
+                width: 90%;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#slideshow">Slideshow</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#links">Links</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="initial">M</div>
+            <h1>Hi, I'm Mostafa</h1>
+            <p>
+                Software Developer and father of a daughter. I am currently studying Software and Web Development
+                at The Tech Academy. I have loved creating games and applications since I was young.
+            </p>
+        </div>
+    </section>
+
+    <section id="slideshow" class="slideshow-section">
+        <div class="container">
+            <h2 class="section-title">Slideshow</h2>
+
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="images/developer.webp" alt="Mostafa working at a computer">
+                    <div class="slide-text">Welcome to my portfolio. I enjoy software development, design, and creating useful digital experiences.</div>
+                </div>
+
+                <div class="slide fade">
+                    <img src="images/html-css-js.jpeg" alt="HTML CSS and JavaScript logos">
+                    <div class="slide-text">I use HTML, CSS, and JavaScript to build responsive websites and front-end projects.</div>
+                </div>
+
+                <div class="slide fade">
+                    <img src="images/python.png" alt="Python logo">
+                    <div class="slide-text">I am also learning Python and programming fundamentals to build more powerful applications.</div>
+                </div>
+
+                <div class="slide fade">
+                    <img src="images/coding-icon.png" alt="Coding icon">
+                    <div class="slide-text">My goal is to grow into a professional developer and create polished websites and applications.</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Who I Am</h3>
+                    <p>I am a passionate software developer who loves building applications, websites, and creative projects.</p>
+                </div>
+                <div class="card">
+                    <h3>My Goal</h3>
+                    <p>To become a professional developer and create powerful applications and websites that solve real problems.</p>
+                </div>
+                <div class="card">
+                    <h3>Education</h3>
+                    <p>Currently studying Software and Web Development at The Tech Academy while building hands-on portfolio projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background:#0f1a30;">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Python</span>
+                <span>Problem Solving</span>
+                <span>Web Development</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Game Project</h3>
+                    <p>A simple game project created while learning programming basics and interactive logic.</p>
+                </div>
+                <div class="card">
+                    <h3>One Page Website</h3>
+                    <p>A one-page project built with HTML, CSS, and JavaScript as part of my web development training.</p>
+                </div>
+                <div class="card">
+                    <h3>Web App</h3>
+                    <p>A responsive Bootstrap-based web app focused on layout, structure, and user-friendly design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="links" style="background:#0f1a30;">
+        <div class="container">
+            <h2 class="section-title">My Links</h2>
+            <div class="project-links">
+                <a href="https://github.com/MostafaAbdellatif94" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/mostafa-orabi-0905582a6/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mostafa | Software Developer Portfolio</p>
+    </footer>
+
+    <script src="JS/one_page_website.js"></script>
+</body>
+</html>
